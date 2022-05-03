@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    //MARK: Assignment, present score value in message alert. Firs we need property to store score data.
+    //MARK: Challenge 1. Add an @State property to store the user’s score, modify it when they get an answer right or wrong, then display it in the alert and in the score label.
     @State private var score = 0
     
     @State private var showingScore = false
@@ -64,13 +64,14 @@ struct ContentView: View {
         Text("Your score is \(score)")
     }
     }
-    //MARK: Assignment: Second we need to present score data
+    //MARK: Challenge 1.
     func flagTapped(_ number: Int) {
         if number == correctAnswer {
             scoretitle = "Correct!"
             score += 1
         } else {
-            scoretitle = "Wrong answer!"
+            // Challenge 2. When someone chooses the wrong flag, tell them their mistake in your alert message – something like “Wrong! That’s the flag of France,” for example.
+            scoretitle = "Wrong answer! \(countries[number])"
             score -= 1
         }
         showingScore = true
