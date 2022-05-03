@@ -163,4 +163,5 @@ One of the best ways to learn is to write your own code as often as possible, so
 3. Make the game show only 8 questions, at which point they see a final alert judging their score and can restart the game.
 
 
+![GuessTheFlag](https://user-images.githubusercontent.com/32281586/166560269-a675adfc-e647-4c73-850a-245a91aac5c5.png)
 
