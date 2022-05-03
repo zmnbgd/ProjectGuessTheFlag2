@@ -12,7 +12,7 @@ struct ContentView: View {
     @State private var score = 0
     
     @State private var showingScore = false
-    @State private var scoretitle = ""
+    @State private var scoreTitle = ""
     
     @State private var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Russia", "Spain", "UK", "US"].shuffled()
     
@@ -58,20 +58,25 @@ struct ContentView: View {
         }
         .padding()
     }
-    .alert(scoretitle, isPresented: $showingScore) {
+    .alert(scoreTitle, isPresented: $showingScore) {
         Button("Continue", action: askQuestion)
     } message: {
         Text("Your score is \(score)")
+    }
+    .alert(scoreTitle, isPresented: $showingScore) {
+        Button("New game", action: startNewGame)
+    } message: {
+        Text("You win")
     }
     }
     //MARK: Challenge 1.
     func flagTapped(_ number: Int) {
         if number == correctAnswer {
-            scoretitle = "Correct!"
+            scoreTitle = "Correct!"
             score += 1
         } else {
-            // Challenge 2. When someone chooses the wrong flag, tell them their mistake in your alert message – something like “Wrong! That’s the flag of France,” for example.
-            scoretitle = "Wrong answer! \(countries[number])"
+            //MARK: Challenge 2. When someone chooses the wrong flag, tell them their mistake in your alert message – something like “Wrong! That’s the flag of France,” for example.
+            scoreTitle = "Wrong answer! You tapped on the \(countries[number]) flag"
             score -= 1
         }
         showingScore = true
@@ -81,7 +86,17 @@ struct ContentView: View {
         countries.shuffle()
         correctAnswer = Int.random(in: 0...2)
     }
-    
+    //MARK:  Challenge 3. Make the game show only 8 questions, at which point they see a final alert judging their score and can restart the game.
+    func startNewGame() {
+        if score == 3 {
+            resetGame()
+        } else {
+            askQuestion()
+        }
+    }
+    func resetGame() {
+        score = 0
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
